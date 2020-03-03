@@ -3,11 +3,13 @@
 using namespace std;
 class link{
 	private:
-	string name;
-	double cost;
+//	string name;
+//	double cost;
 	
 	public:
 		link *pnext;
+		string name;
+		double cost;
 		link(string n, double c)//create link
 				{
 			name= n;
@@ -44,6 +46,52 @@ class linkedList{
 			pcurrent=pcurrent->pnext;// moves the content of the next list where the pointer is pointng to
 			}
 		}
+		void pop(){
+		//delete
+		pfirst = pfirst->pnext;
+		}
+		
+		int search(){
+			link *pValue;
+			string a;
+			cout<< "\nEnter the name of the item your looking  for?\n";
+			cin>> a;
+			pValue = pfirst;
+			while(pValue!=NULL){
+				if(a == pValue->name){
+					cout << a<< " Found!! \n";
+					return 0;
+				}else{
+				pValue = pValue->pnext;
+				}
+			}
+			cout<<a<< " Not Found!!";
+		}
+		
+		void totalCost(){
+			link *psum;
+			double total;
+			total = 0;
+			psum = pfirst;
+			while(psum!=NULL){
+				total = total + psum->cost;
+				psum = psum->pnext;
+			}
+			cout<< "Total Sum of cost = "<< total<<"\n";
+		}
+		
+		int getExpensive(){
+			//expensive items are above 1000
+			link *pcurrent;
+			pcurrent = pfirst;
+			while(pcurrent!=NULL){
+				if(pcurrent->cost >1000){
+						pcurrent->display();
+			pcurrent=pcurrent->pnext;
+				}
+			}
+				return 0;
+		}
 };
 int main(){
 	linkedList users;
@@ -53,5 +101,13 @@ int main(){
 	users.insert("Onyango", 5000.00);
 	users.insert("Simi", 8900.00);
 	users.displayList();
+	users.search();
+	users.totalCost();
+	users.getExpensive();
+//	users.pop();
+//
+//	users.displayList();
+//users.s
+	
 	return 0;
 }
