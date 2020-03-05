@@ -92,6 +92,43 @@ class linkedList{
 			}
 				return 0;
 		}
+		
+		void orderedInsert(string a, double co){
+			link *pnewlink = new link(a, co);
+			link *pcurrent;
+			link *pprev;
+			pcurrent= pfirst;
+			pprev=pfirst;
+			while(pcurrent!=NULL){
+				pprev = pcurrent;
+				pcurrent = pcurrent->pnext;
+			}
+			if(pcurrent==pfirst){
+			 pnewlink->pnext=pfirst;
+			 pfirst=pnewlink;
+			}else{
+				pprev->pnext = pnewlink;
+				pnewlink->pnext = pcurrent;
+			}
+		}
+		
+		void bubblesort(){
+			link *pcurrent= pfirst;
+			link *pafter = pcurrent->pnext;
+			int out, in, n=4;
+			for(out=0; out<4; out++){
+				n--;
+				for(in=0; in<4-out; in++){
+					if(pcurrent->name > pafter->name){
+						string tempname = pcurrent->name;
+						double tempcost = pcurrent->cost;
+						
+						pafter->name= tempname;
+						pafter->cost = tempcost;
+					}
+				}
+			}
+		}
 };
 int main(){
 	linkedList users;
@@ -101,9 +138,12 @@ int main(){
 	users.insert("Onyango", 5000.00);
 	users.insert("Simi", 8900.00);
 	users.displayList();
-	users.search();
-	users.totalCost();
-	users.getExpensive();
+		users.bubblesort();
+	users.displayList();
+//
+//	users.search();
+//	users.totalCost();
+//	users.getExpensive();
 //	users.pop();
 //
 //	users.displayList();
