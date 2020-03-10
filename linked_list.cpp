@@ -24,11 +24,13 @@ class link{
 class linkedList{
 	private:
 			link *pfirst;
+			link *plast;
 
 	public:
 		linkedList()//create first link
 		{
-			pfirst=NULL;
+			pfirst = NULL;
+			plast = NULL;
 		}
 		//creates a link and adds it to the list
 		void insert(string name, double cost){
@@ -129,17 +131,35 @@ class linkedList{
 				}
 			}
 		}
+		
+		//error to debug
+		void insertLast( string na, double co){
+		 link *pnewlink = new link(na, co);
+		 if(pfirst==NULL){
+		 	pfirst = pnewlink;
+		 }
+		 	else{
+		 	plast->pnext = pnewlink;
+		 	plast = pnewlink;	
+			 }
+		}
+		//error to debug
+		void displayFirst(){
+			link *pcurrent;
+			pcurrent = pfirst;
+			pcurrent->display();
+		}
 };
 int main(){
 	linkedList users;
-	users.insert("John", 100.00);
-	users.insert("Maila", 50.00);
-	users.insert("Kimbo", 1000.00);
-	users.insert("Onyango", 5000.00);
-	users.insert("Simi", 8900.00);
-	users.displayList();
-		users.bubblesort();
-	users.displayList();
+	users.insertLast("John", 100.00);
+	users.insertLast("Maila", 50.00);
+	users.insertLast("Kimbo", 1000.00);
+	users.insertLast("Onyango", 5000.00);
+	users.insertLast("Simi", 8900.00);
+	users.displayFirst();
+		users.pop();
+	users.displayFirst();
 //
 //	users.search();
 //	users.totalCost();
